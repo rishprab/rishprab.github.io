@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Risheek's Games Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #14161a;
+    --row: #1c1f24;
+    --row-hover: #21252b;
+    --line: #2c3037;
+    --felt: #21413a;
+    --gold: #c9a24b;
+    --text: #ece8df;
+    --muted: #9a9488;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; }
+  }
+
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 56px 24px 80px;
+  }
+
+  header {
+    position: relative;
+    margin-bottom: 56px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--line);
+  }
+  .mark {
+    position: absolute;
+    top: -6px;
+    right: 0;
+    width: 74px;
+    height: 74px;
+    opacity: 0.9;
+  }
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-size: clamp(2.1rem, 6vw, 3.1rem);
+    line-height: 1.05;
+    margin: 0 0 14px 0;
+    letter-spacing: -0.01em;
+    max-width: 11ch;
+  }
+  h1 em {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--gold);
+  }
+  header p {
+    font-size: 1.02rem;
+    color: var(--muted);
+    max-width: 46ch;
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 44px 0 16px 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--muted);
+  }
+  .section-label .rule {
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+  }
+  .section-label .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .section-label.online .dot { background: var(--gold); }
+  .section-label.local .dot { background: var(--felt); box-shadow: 0 0 0 1px #3a6b5c inset; }
+
+  .game-list { display: flex; flex-direction: column; gap: 10px; }
+
+  a.game-row {
+    display: block;
+    position: relative;
+    text-decoration: none;
+    color: inherit;
+    background: var(--row);
+    border: 1px solid var(--line);
+    border-left: 3px solid transparent;
+    border-radius: 8px;
+    padding: 18px 20px 18px 22px;
+    transition: background 0.15s ease, border-left-color 0.15s ease, transform 0.15s ease;
+  }
+  a.game-row:hover, a.game-row:focus-visible {
+    background: var(--row-hover);
+    border-left-color: var(--gold);
+    transform: translateX(2px);
+  }
+  a.game-row:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+  }
+  .row-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .game-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.28rem;
+    color: var(--text);
+    letter-spacing: -0.005em;
+  }
+  .chevron {
+    flex-shrink: 0;
+    color: var(--muted);
+    font-size: 1.1rem;
+    transform: translateY(1px);
+    transition: transform 0.15s ease, color 0.15s ease;
+  }
+  a.game-row:hover .chevron {
+    color: var(--gold);
+    transform: translate(2px, 1px);
+  }
+  .game-desc {
+    margin-top: 6px;
+    font-size: 0.92rem;
+    line-height: 1.5;
+    color: var(--muted);
+    max-width: 62ch;
+  }
+
+  footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header>
+    <svg class="mark" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="8" y="14" width="46" height="64" rx="6" transform="rotate(-8 8 14)" stroke="#2c3037" stroke-width="2" fill="#1c1f24"/>
+      <rect x="30" y="20" width="46" height="64" rx="6" transform="rotate(6 30 20)" stroke="var(--gold)" stroke-width="2" fill="#1c1f24"/>
+      <circle cx="61" cy="46" r="3" fill="var(--gold)"/>
+      <circle cx="72" cy="57" r="3" fill="var(--gold)"/>
+      <circle cx="61" cy="68" r="3" fill="var(--gold)"/>
+    </svg>
+    <h1>Risheek's <em>Games</em> Hub</h1>
+    <p>A shelf of game-night companions — tap through to score, deal, and keep track so you can focus on playing.</p>
+  </header>
+
+  <div class="section-label online">
+    <span class="dot"></span>
+    Online — everyone plays on their own phone
+    <span class="rule"></span>
+  </div>
+  <div class="game-list">
+
+    <a class="game-row" href="https://rishprab.github.io/Mafia-Game/">
+      <div class="row-top">
+        <span class="game-title">Mafia Online</span>
+        <span class="chevron">→</span>
+      </div>
+      <p class="game-desc">Play Mafia live with friends, each on your own phone. Roles are assigned automatically, night actions and the mafia's private group chat happen right in the app, and a narrator dashboard keeps the story moving.</p>
+    </a>
+
+    <a class="game-row" href="https://rishprab.github.io/Codenames-Game/">
+      <div class="row-top">
+        <span class="game-title">Codenames Online</span>
+        <span class="chevron">→</span>
+      </div>
+      <p class="game-desc">Play Codenames with friends on separate devices — spymasters get a private view of the board while everyone else sees just the words, with real-time clue-giving and guessing.</p>
+    </a>
+
+    <a class="game-row" href="https://rishprab.github.io/TTR-Euro-Scoreboard/">
+      <div class="row-top">
+        <span class="game-title">Ticket to Ride: Europe Scorer</span>
+        <span class="chevron">→</span>
+      </div>
+      <p class="game-desc">A live scorekeeper for Ticket to Ride Europe — claim routes for automatic point totals, keep your destination tickets private until the big reveal, and let the app calculate the Longest Path bonus for you.</p>
+    </a>
+
+  </div>
+
+  <div class="section-label local">
+    <span class="dot"></span>
+    In person — one device, passed around
+    <span class="rule"></span>
+  </div>
+  <div class="game-list">
+
+    <a class="game-row" href="https://rishprab.github.io/Mafia-InPerson/">
+      <div class="row-top">
+        <span class="game-title">Mafia: Pass &amp; Play</span>
+        <span class="chevron">→</span>
+      </div>
+      <p class="game-desc">A simple role dealer for in-person Mafia — enter your players, pick your roles, and pass one phone around so everyone can privately peek at their role before the game begins.</p>
+    </a>
+
+    <a class="game-row" href="https://rishprab.github.io/Cluedo-Notes/">
+      <div class="row-top">
+        <span class="game-title">Cluedo Deduction Tracker</span>
+        <span class="chevron">→</span>
+      </div>
+      <p class="game-desc">A digital notepad for Cluedo that replaces pen and paper — tap through suspects, weapons, and rooms to track what's been ruled out, with smart auto-fill when you confirm a card.</p>
+    </a>
+
+  </div>
+
+  <footer>
+    Built by Risheek. Each game runs independently — nothing here shares data across apps.
+  </footer>
+
+</div>
+
+</body>
+</html>
